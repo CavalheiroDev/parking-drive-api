@@ -1,15 +1,16 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser
-from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.utils.translation import gettext_lazy as _
 
 from users.managers import UserManager
 
 
-class User(AbstractBaseUser):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("Login"), max_length=255, unique=True)
     username = models.CharField(
         _("Username"), max_length=50, unique=True, blank=True, null=True
     )
+    cpf = models.CharField(_("CPF"), max_length=11, unique=True, blank=True, null=True)
     first_name = models.CharField(_("Nome"), max_length=50, blank=True, null=True)
     last_name = models.CharField(_("Sobrenome"), max_length=50, blank=True, null=True)
     is_staff = models.BooleanField(
@@ -21,6 +22,11 @@ class User(AbstractBaseUser):
         _("Usuário ativo"),
         default=True,
         help_text=_("Identifica se o usuário está ativo no sistema."),
+    )
+    is_superuser = models.BooleanField(
+        _("Super usuario"),
+        default=True,
+        help_text=_("Identifica se é um super usuário"),
     )
 
     objects = UserManager()
