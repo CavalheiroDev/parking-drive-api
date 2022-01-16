@@ -6,13 +6,7 @@ class UserManager(BaseUserManager):
     def __init__(self) -> None:
         super().__init__()
 
-    def create_user(
-        self,
-        email: str,
-        cpf: Optional[str] = None,
-        password: Optional[str] = None,
-        **kwargs: Dict
-    ):
+    def create_user(self, email: str, cpf: Optional[str] = None, password: Optional[str] = None, **kwargs: Dict):
         user = self.model(email=email, cpf=cpf, **kwargs)
         user.set_password(password)
         user.save(using=self._db)
