@@ -131,6 +131,9 @@ AUTH_USER_MODEL = "users.User"
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated", # make all endpoints private
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "users.authentication.SafeJWTAuthentication"
     ]
 }
 
