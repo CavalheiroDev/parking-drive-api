@@ -12,7 +12,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, **kwargs):
+    def create_superuser(self, **kwargs: Dict):
         user = self.create_user(**kwargs)
         user.is_superuser = True
         user.is_staff = True
