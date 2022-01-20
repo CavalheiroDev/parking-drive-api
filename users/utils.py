@@ -1,9 +1,10 @@
+from users.models import User
 from django.conf import settings
 import datetime
 import jwt
 
 
-def generate_access_token(user):
+def generate_access_token(user: User):
     
     access_token_payload = {
         "user_id": user.id,
@@ -16,7 +17,7 @@ def generate_access_token(user):
     return access_token
 
 
-def generate_refresh_token(user):
+def generate_refresh_token(user: User):
     
     refresh_token_payload = {
         "user_id": user.id,
