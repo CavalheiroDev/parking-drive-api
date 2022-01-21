@@ -7,7 +7,7 @@ from users.utils import generate_access_token, generate_refresh_token
 from users.models import User
 
 
-class JWTest(APITestCase):
+class JWTestCase(APITestCase):
     def setUp(self):
         self.test_user = User.objects.create_user(email="email@test.com", password="senhaMuitoForte1234!#")
 
