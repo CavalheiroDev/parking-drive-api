@@ -1,1 +1,2 @@
-from .jwt_test import JWTest
+from .jwt_test import JWTestCase
+from .user_test import UserTestCase
