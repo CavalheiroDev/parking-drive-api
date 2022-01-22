@@ -19,7 +19,7 @@ services:
     build: .
     restart: always
     command: >
-      bash -c "python manage.py runserver"
+      bash -c "make start_project"
     env_file:
       - .env
     volumes:
@@ -28,5 +28,4 @@ services:
     ports:
       - "8000:8000"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
