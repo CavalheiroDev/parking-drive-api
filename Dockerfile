@@ -14,5 +14,3 @@ COPY requirements/ requirements/
 RUN pip install -r requirements/dev.txt
 
 COPY . . 
-
-RUN python manage.py migrate
