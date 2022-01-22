@@ -80,8 +80,15 @@ WSGI_APPLICATION = "core.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": config("DATABASE_ENGINE"),
+        "NAME": config("DATABASE_NAME"),
+        "USER": config("DATABASE_USER"),
+        "PASSWORD": config("DATABASE_PASSWORD"),
+        "HOST": config("DATABASE_HOST"),
+        "PORT": config("DATABASE_PORT"),
+        "OPTIONS": {
+            "charset": "utf8mb4",
+        },
     }
 }
 
@@ -131,11 +138,9 @@ AUTH_USER_MODEL = "users.User"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
-        "rest_framework.permissions.IsAuthenticated", # make all endpoints private
+        "rest_framework.permissions.IsAuthenticated",  # make all endpoints private
     ],
-    "DEFAULT_AUTHENTICATION_CLASSES": [
-        "users.authentication.SafeJWTAuthentication"
-    ]
+    "DEFAULT_AUTHENTICATION_CLASSES": ["users.authentication.SafeJWTAuthentication"],
 }
 
 ACCESS_TOKEN_LIFETIME = timedelta(minutes=15)
