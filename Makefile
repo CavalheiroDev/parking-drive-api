@@ -4,3 +4,6 @@ start_project:
 
 test:
 	python manage.py test
+
+create_super_user:
+	docker exec -it parking-api python manage.py createsuperuser
