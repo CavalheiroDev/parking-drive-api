@@ -3,7 +3,7 @@ start_project:
 	python manage.py runserver
 
 test:
-	python manage.py test
+	docker exec -it parking-api python manage.py test
 
 create_super_user:
 	docker exec -it parking-api python manage.py createsuperuser
