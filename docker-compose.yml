@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  db:
+    container_name: mariadb-parking
+    image: mariadb:10.2
+    restart: on-failure
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: parking-drive-api
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      TZ: "America/Sao_Paulo"
+    ports:
+      - "3306:3306"
+  app:
+    container_name: parking-api
+    build: .
+    restart: always
+    command: >
+      bash -c "python manage.py runserver"
+    env_file:
+      - .env
+    volumes:
+      - ./:/code
+      - ./static/:/static
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
