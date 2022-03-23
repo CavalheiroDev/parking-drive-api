@@ -40,7 +40,7 @@ class JWTViewSet(GenericViewSet):
             {"access_token": access_token, "refresh_token": refresh_token, "user": serializer.data}, status=status.HTTP_200_OK
         )
 
-    @action(methods=["POST"], detail=False, url_path="refresh", permission_classes=[AllowAny])
+    @action(methods=["POST"], detail=False, url_path="token/refresh", permission_classes=[AllowAny])
     def refresh_token(self, request: HttpRequest):
         refresh_token = request.data.get("refresh_token")
         if refresh_token is None:
